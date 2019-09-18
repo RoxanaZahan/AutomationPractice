@@ -1,5 +1,6 @@
 package Tests;
 
+import Pages.CheckoutPage;
 import Pages.DealDetailsPage;
 import Pages.LandingPage;
 import Pages.LoginRegisterPage;
@@ -9,41 +10,37 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Test1 extends SeleniumDriver {
+public class Test2 extends SeleniumDriver {
 
     //Instance Variables
     LandingPage landingPage;
     LoginRegisterPage loginRegisterPage;
     DealDetailsPage dealDetailsPage;
+    CheckoutPage checkoutPage;
 
-    String expectedDealTitle = "GIA: WillCall Automation Deal";
+    String expectedPlaceOrderText = "Place Order";
 
 
     @BeforeMethod
-    public void beforeTest(){
-        landingPage = PageFactory.initElements(driver,LandingPage.class);
+    public void beforeTest() {
+        landingPage = PageFactory.initElements(driver, LandingPage.class);
         loginRegisterPage = PageFactory.initElements(driver, LoginRegisterPage.class);
         dealDetailsPage = PageFactory.initElements(driver, DealDetailsPage.class);
-
+        checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
     }
 
     @Test
-    public void DealSearch() {
-        //Local Variable
-        goToUrl("https://staging.groupon.com/");
+    public void BuySignedIn() {
+
+        goToUrl("https://staging.groupon.com/deals/gl-fantasia-live-in-concert-20");
         landingPage.noThanksClick();
         landingPage.clickSignInButton();
         loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
-        landingPage.clickNavBarCategory("things-to-do-tab");
-        landingPage.freeTextSearch("willcall");
-        landingPage.clickOnDeal(0);
-        Assert.assertEquals(dealDetailsPage.getTextOfDealTitle(), expectedDealTitle);
-
+        dealDetailsPage.selectDate(0);
+        dealDetailsPage.selectTime(0);
+        dealDetailsPage.selectTicketsNumber(0);
+        dealDetailsPage.selectSeatingSection(0);
+        dealDetailsPage.clickBuyButton();
+        Assert.assertEquals(checkoutPage.getTextOfPlaceOrder(), expectedPlaceOrderText);
     }
-
-
-
-
-
-
 }
