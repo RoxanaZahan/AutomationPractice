@@ -12,6 +12,7 @@ import java.util.List;
 public class LandingPage {
 
     SeleniumDriver seleniumDriver = new SeleniumDriver();
+    WaitMethods waitMethods = new WaitMethods();
 
     @FindBy(xpath = "//div[@id='btn-categories']")
     private WebElement categories;
@@ -38,22 +39,22 @@ public class LandingPage {
 
 
     public void noThanksClick() {
-        seleniumDriver.waitForElementToBeVisible(noThanks);
+        waitMethods.waitForElementToBeVisible(noThanks);
         noThanks.click();
     }
     public void waitForLandingPage() {
-        seleniumDriver.waitForElement(header);
+        waitMethods.waitForElement(header);
     }
 
     public void clickSignInButton() {
         WaitMethods.sleep(3);
         try{
-            if(seleniumDriver.isElementDisplayed(signInButton1,5)) {
+            if(waitMethods.isElementDisplayed(signInButton1,5)) {
                 signInButton1.click();
             }
         } catch (Exception e) {}
         try{
-            if(seleniumDriver.isElementDisplayed(signInButton2,5)) {
+            if(waitMethods.isElementDisplayed(signInButton2,5)) {
                 signInButton2.click();
             }
         } catch (Exception e) {}
@@ -61,7 +62,7 @@ public class LandingPage {
     }
 
     public void clickNavBarCategory(String channelId) {
-        seleniumDriver.isElementDisplayed(navBarCategories.get(0), 5);
+        waitMethods.isElementDisplayed(navBarCategories.get(0), 5);
         for (WebElement channel : navBarCategories) {
             if (channel.getAttribute("id").contains(channelId)) {
                 channel.click();
@@ -95,14 +96,14 @@ public class LandingPage {
 
     public void freeTextSearch(String textInput) {
         WaitMethods.sleep(5);
-        WebElement enterText = seleniumDriver.waitForElementToBeVisible(textSearch);
+        WebElement enterText = waitMethods.waitForElementToBeVisible(textSearch);
         enterText.sendKeys(textInput);
         enterText.sendKeys(Keys.ENTER);
     }
 
     public void clickOnDeal(int index) {
         WaitMethods.sleep(5);
-        WebElement deal = seleniumDriver.waitForElementToBeVisible(dealsNames.get(index));
+        WebElement deal = waitMethods.waitForElementToBeVisible(dealsNames.get(index));
         deal.click();
     }
 

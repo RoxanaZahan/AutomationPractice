@@ -9,6 +9,7 @@ import java.util.List;
 
 public class DealDetailsPage {
     SeleniumDriver seleniumDriver = new SeleniumDriver();
+    WaitMethods waitMethods = new WaitMethods();
 
     @FindBy(xpath = "//h1[@id='deal-title']")
     private WebElement dealTitle;
@@ -30,25 +31,26 @@ public class DealDetailsPage {
 
     public void selectDate(int index) {
         WaitMethods.sleep(5);
-        WebElement date = seleniumDriver.waitForElementToBeVisible(dates.get(index));
+        WebElement date = waitMethods.waitForElementToBeVisible(dates.get(index));
         date.click();
     }
 
     public void selectTime(int index) {
-        WebElement times = seleniumDriver.waitForElementToBeVisible(timeSelector);
+        WebElement times = waitMethods.waitForElementToBeVisible(timeSelector);
         times.click();
-        WebElement time = seleniumDriver.waitForElementToBeVisible(timePills.get(index));
+        WebElement time = waitMethods.waitForElementToBeVisible(timePills.get(index));
         time.click();
     }
 
     //make sure to refactor this in order to function for not visible pills as well
     public void selectTicketsNumber(int index) {
-        WebElement number = seleniumDriver.waitForElementToBeVisible(ticketsNumber.get(index));
+        WebElement number = waitMethods.waitForElementToBeVisible(ticketsNumber.get(index));
         number.click();
     }
 
     public void selectSeatingSection(int index) {
-        WebElement seatingSection = seleniumDriver.waitForElementToBeVisible(seatingSections.get(index));
+        WaitMethods.sleep(3);
+        WebElement seatingSection = waitMethods.waitForElementToBeVisible(seatingSections.get(index));
         seatingSection.click();
     }
 
