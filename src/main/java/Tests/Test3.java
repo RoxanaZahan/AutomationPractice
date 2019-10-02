@@ -28,10 +28,9 @@ public class Test3 extends SeleniumDriver {
     }
 
     @Test
-    public void buySignedIn() {
+    public void buySignedOut() {
         goToUrl("https://staging.groupon.com/deals/gl-fantasia-live-in-concert-20");
         landingPage.noThanksClick();
-        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
         dealDetailsPage.selectDate(0);
         dealDetailsPage.selectTime(0);
         dealDetailsPage.selectTicketsNumber(0);

@@ -56,8 +56,8 @@ public class DealDetailsPage {
 
     //check what happens if buy button is grey (not active)
     public void clickBuyButton() {
-        WaitMethods.sleep(5);
+        WaitMethods.sleep(3);
         buyButton.click();
-        WaitMethods.sleep(5);
+        WaitMethods.sleep(3);
     }
 }

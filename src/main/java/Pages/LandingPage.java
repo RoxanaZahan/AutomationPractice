@@ -102,9 +102,10 @@ public class LandingPage {
     }
 
     public void clickOnDeal(int index) {
-        WaitMethods.sleep(5);
+        WaitMethods.sleep(3);
         WebElement deal = waitMethods.waitForElementToBeVisible(dealsNames.get(index));
         deal.click();
+        WaitMethods.sleep(3);
     }
 
 }
