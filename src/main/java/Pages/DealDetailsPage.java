@@ -25,9 +25,17 @@ public class DealDetailsPage {
     private List<WebElement> seatingSections;
     @FindBy(xpath = "//button[@id='book-now-button']")
     private WebElement buyButton;
+    @FindBy(xpath = "//div[@class='info-price']")
+    private WebElement dealPrice;
 
     //asserting stuff
     public String getTextOfDealTitle() { return dealTitle.getText(); }
+    public Integer getDealPrice() {
+        String sPrice = dealPrice.getText().replaceAll("[^0-9]", "");
+        Integer iPrice = Integer.parseInt(sPrice);
+        return iPrice;
+    }
+    public Integer numberOfTickets;
 
     public void selectDate(int index) {
         WaitMethods.sleep(5);
@@ -43,9 +51,14 @@ public class DealDetailsPage {
     }
 
     //make sure to refactor this in order to function for not visible pills as well
-    public void selectTicketsNumber(int index) {
-        WebElement number = waitMethods.waitForElementToBeVisible(ticketsNumber.get(index));
+    public void selectTicketsNumber(int numberOfTickets) {
+        this.numberOfTickets = numberOfTickets;
+        WebElement number = waitMethods.waitForElementToBeVisible(ticketsNumber.get(numberOfTickets - 1));
         number.click();
+    }
+
+    public Integer expectedTotalPriceDD () {
+        return this.numberOfTickets * 10;
     }
 
     public void selectSeatingSection(int index) {

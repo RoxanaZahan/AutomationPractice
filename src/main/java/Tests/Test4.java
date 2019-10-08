@@ -10,14 +10,16 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Test3 extends SeleniumDriver {
+public class Test4 extends SeleniumDriver {
 
+    //Instance Variables
     LandingPage landingPage;
     LoginRegisterPage loginRegisterPage;
     DealDetailsPage dealDetailsPage;
     CheckoutPage checkoutPage;
 
-    String expectedPlaceOrderText = "Place Order";
+    Integer expectedDealPrice = 10;
+    Integer expectedItemPrice = 1000;
 
     @BeforeMethod
     public void beforeTest() {
@@ -25,19 +27,28 @@ public class Test3 extends SeleniumDriver {
         loginRegisterPage = PageFactory.initElements(driver, LoginRegisterPage.class);
         dealDetailsPage = PageFactory.initElements(driver, DealDetailsPage.class);
         checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
+
     }
 
     @Test
-    public void buySignedOut() {
-        goToUrl("https://staging.groupon.com/deals/gl-fantasia-live-in-concert-20");
+    public void BuyDealEndToEnd() {
+        //Local Variable
+        goToUrl("https://staging.groupon.com/");
         landingPage.noThanksClick();
+        landingPage.clickSignInButton();
+        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
+        landingPage.clickNavBarCategory("things-to-do-tab");
+        landingPage.freeTextSearch("willcall");
+        landingPage.clickOnDeal(0);
+        Assert.assertEquals(dealDetailsPage.getDealPrice(), expectedDealPrice);
         dealDetailsPage.selectDate(0);
         dealDetailsPage.selectTime(0);
-        dealDetailsPage.selectTicketsNumber(1);
+        dealDetailsPage.selectTicketsNumber(2);
         dealDetailsPage.selectSeatingSection(0);
+        Assert.assertEquals(dealDetailsPage.getDealPrice(), dealDetailsPage.expectedTotalPriceDD());
         dealDetailsPage.clickBuyButton();
-        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
-        Assert.assertEquals(checkoutPage.getTextOfPlaceOrder(), expectedPlaceOrderText);
-        //driver.getCurrentUrl();
+        Assert.assertEquals(checkoutPage.getItemPrice(), expectedItemPrice);
+        Assert.assertEquals(checkoutPage.getItemPriceForQuantity(), checkoutPage.getFinalPrice());
+
     }
 }
