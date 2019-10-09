@@ -1,11 +1,13 @@
 package Pages;
 
 import Utils.SeleniumDriver;
+import Utils.WaitMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CheckoutPage {
     SeleniumDriver seleniumDriver = new SeleniumDriver();
+    WaitMethods waitMethods = new WaitMethods();
 
     @FindBy(xpath = "//button[@class='btn complete-order']")
     private WebElement placeOrderButton;
@@ -35,6 +37,11 @@ public class CheckoutPage {
     public Integer getItemPriceForQuantity() {
         Integer total = getItemPrice() * getQuantity();
         return total;
+    }
+
+    public void clickPlaceOrder() {
+        WebElement placeOrder = waitMethods.waitForElementToBeVisible(placeOrderButton);
+        placeOrder.click();
     }
 
 

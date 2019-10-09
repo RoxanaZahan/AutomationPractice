@@ -2,7 +2,6 @@ package Pages;
 
 import Utils.SeleniumDriver;
 import Utils.WaitMethods;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +20,8 @@ public class LoginRegisterPage {
     private WebElement signInEmailInput2;
     @FindBy (xpath = "//input[@id='sf-pw']")
     private WebElement signInPasswordInput2;
+    @FindBy (xpath = "//button[@class = 'btn btn-signin']")
+    private WebElement signInButton2;
 
 
     public void signInEmailPasswordInput1 (String email, String password) {
@@ -28,7 +29,9 @@ public class LoginRegisterPage {
         enterEmail.sendKeys(email);
         WebElement enterPassword = waitMethods.waitForElementToBeVisible(signInPasswordInput1);
         enterPassword.sendKeys(password);
-        enterPassword.sendKeys(Keys.ENTER);
+        //waitMethods.sleep(4);
+        signInButton2.click();
+        //enterPassword.sendKeys(Keys.ENTER);
     }
 
     public void signInEmailPasswordInput2 (String email, String password) {
@@ -36,7 +39,9 @@ public class LoginRegisterPage {
         enterEmail.sendKeys(email);
         WebElement enterPassword = waitMethods.waitForElementToBeVisible(signInPasswordInput2);
         enterPassword.sendKeys(password);
-        enterPassword.sendKeys(Keys.ENTER);
+        waitMethods.sleep(4);
+        signInButton2.click();
+        //enterPassword.sendKeys(Keys.ENTER);
     }
 
     public void signIn(String email, String password) {

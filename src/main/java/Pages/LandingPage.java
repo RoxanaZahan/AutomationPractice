@@ -62,6 +62,7 @@ public class LandingPage {
     }
 
     public void clickNavBarCategory(String channelId) {
+        waitMethods.sleep(2);
         waitMethods.isElementDisplayed(navBarCategories.get(0), 5);
         for (WebElement channel : navBarCategories) {
             if (channel.getAttribute("id").contains(channelId)) {

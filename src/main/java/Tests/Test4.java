@@ -1,9 +1,6 @@
 package Tests;
 
-import Pages.CheckoutPage;
-import Pages.DealDetailsPage;
-import Pages.LandingPage;
-import Pages.LoginRegisterPage;
+import Pages.*;
 import Utils.SeleniumDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -17,6 +14,7 @@ public class Test4 extends SeleniumDriver {
     LoginRegisterPage loginRegisterPage;
     DealDetailsPage dealDetailsPage;
     CheckoutPage checkoutPage;
+    ReceiptPage receiptPage;
 
     Integer expectedDealPrice = 10;
     Integer expectedItemPrice = 1000;
@@ -27,6 +25,7 @@ public class Test4 extends SeleniumDriver {
         loginRegisterPage = PageFactory.initElements(driver, LoginRegisterPage.class);
         dealDetailsPage = PageFactory.initElements(driver, DealDetailsPage.class);
         checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
+        receiptPage = PageFactory.initElements(driver, ReceiptPage.class);
 
     }
 
@@ -49,6 +48,8 @@ public class Test4 extends SeleniumDriver {
         dealDetailsPage.clickBuyButton();
         Assert.assertEquals(checkoutPage.getItemPrice(), expectedItemPrice);
         Assert.assertEquals(checkoutPage.getItemPriceForQuantity(), checkoutPage.getFinalPrice());
+        checkoutPage.clickPlaceOrder();
+        receiptPage.printReceiptError();
 
     }
 }

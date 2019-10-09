@@ -5,8 +5,6 @@ import Utils.WaitMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class ReceiptPage {
     SeleniumDriver seleniumDriver = new SeleniumDriver();
     WaitMethods waitMethods = new WaitMethods();
@@ -17,24 +15,26 @@ public class ReceiptPage {
     private WebElement processingSecondLine;
     @FindBy(xpath = "//a[@id= 'user-name']")
     private WebElement myStuff;
-    @FindBy(xpath = "//select[@id= 'filter']")
-    private WebElement grouponsFilterSelector;
-    @FindBy(xpath = "//select[@id= 'filter']/option")
-    private List<WebElement> grouponsFilters;
 
 
-    public void getTextProcessingFirstLine() { System.out.println(processingFirstLine.getText()); }
-    public void getTextProcessingSecondLine() { System.out.println(processingSecondLine.getText()); }
+    public void printReceiptError() {
+        try {
+            if (waitMethods.isElementDisplayed(processingFirstLine, 20)) {
+                System.out.println(processingFirstLine.getText());
+            }
+        } catch (Exception e) {}
+
+        //waitMethods.isElementDisplayed(processingFirstLine, 20);
+
+        //WebElement firstLine = waitMethods.waitForElementToBeVisible2(By.xpath("//div[@class='processing-text']"));
+        //WebElement secondLine = waitMethods.waitForElementToBeVisible(processingSecondLine);
+        //System.out.println(firstLine.getText());
+        //System.out.println(secondLine.getText());
+    }
 
     public void clickMyStuff() {
         WebElement myStuffButton = waitMethods.waitForElementToBeVisible(myStuff);
         myStuffButton.click();
-    }
-
-    public void myGrouponsFilter() {
-        WebElement selector = waitMethods.waitForElementToBeVisible(grouponsFilterSelector);
-        selector.click();
-
     }
 
 }

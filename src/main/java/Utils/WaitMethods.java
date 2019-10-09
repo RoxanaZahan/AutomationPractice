@@ -26,10 +26,18 @@ public class WaitMethods {
 
     public WebElement waitForElementToBeVisible(WebElement element) {
         Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
-                .withTimeout(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(20))
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NoSuchElementException.class);
         return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public WebElement waitForElementToBeVisible2(By by) {
+        Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
+                .withTimeout(Duration.ofSeconds(20))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
     }
 
     public boolean isElementDisplayed(final WebElement element, final int timeout) {
