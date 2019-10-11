@@ -1,9 +1,10 @@
 package Tests;
 
 import Pages.*;
+import Utils.Cookies;
 import Utils.SeleniumDriver;
+import Utils.WaitMethods;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,9 @@ public class Test4 extends SeleniumDriver {
     DealDetailsPage dealDetailsPage;
     CheckoutPage checkoutPage;
     ReceiptPage receiptPage;
+    WaitMethods waitMethods;
+    Cookies cookies;
+    Footer footer;
 
     Integer expectedDealPrice = 10;
     Integer expectedItemPrice = 1000;
@@ -26,6 +30,9 @@ public class Test4 extends SeleniumDriver {
         dealDetailsPage = PageFactory.initElements(driver, DealDetailsPage.class);
         checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
         receiptPage = PageFactory.initElements(driver, ReceiptPage.class);
+        waitMethods = PageFactory.initElements(driver, WaitMethods.class);
+        cookies = PageFactory.initElements(driver, Cookies.class);
+        footer = PageFactory.initElements(driver, Footer.class);
 
     }
 
@@ -34,22 +41,27 @@ public class Test4 extends SeleniumDriver {
         //Local Variable
         goToUrl("https://staging.groupon.com/");
         landingPage.noThanksClick();
-        landingPage.clickSignInButton();
-        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
-        landingPage.clickNavBarCategory("things-to-do-tab");
-        landingPage.freeTextSearch("willcall");
-        landingPage.clickOnDeal(0);
-        Assert.assertEquals(dealDetailsPage.getDealPrice(), expectedDealPrice);
-        dealDetailsPage.selectDate(0);
-        dealDetailsPage.selectTime(0);
-        dealDetailsPage.selectTicketsNumber(2);
-        dealDetailsPage.selectSeatingSection(0);
-        Assert.assertEquals(dealDetailsPage.getDealPrice(), dealDetailsPage.expectedTotalPriceDD());
-        dealDetailsPage.clickBuyButton();
-        Assert.assertEquals(checkoutPage.getItemPrice(), expectedItemPrice);
-        Assert.assertEquals(checkoutPage.getItemPriceForQuantity(), checkoutPage.getFinalPrice());
-        checkoutPage.clickPlaceOrder();
-        receiptPage.printReceiptError();
+        footer.clickFooter();
+        //waitMethods.sleep(30);
+        //cookies.setCookie();
+        //refreshPage();
+        //waitMethods.sleep(120);
+//        landingPage.clickSignInButton();
+//        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
+//        landingPage.clickNavBarCategory("things-to-do-tab");
+//        landingPage.freeTextSearch("willcall");
+//        landingPage.clickOnDeal(0);
+//        Assert.assertEquals(dealDetailsPage.getDealPrice(), expectedDealPrice);
+//        dealDetailsPage.selectDate(0);
+//        dealDetailsPage.selectTime(0);
+//        dealDetailsPage.selectTicketsNumber(2);
+//        dealDetailsPage.selectSeatingSection(0);
+//        Assert.assertEquals(dealDetailsPage.getDealPrice(), dealDetailsPage.expectedTotalPriceDD());
+//        dealDetailsPage.clickBuyButton();
+//        Assert.assertEquals(checkoutPage.getItemPrice(), expectedItemPrice);
+//        Assert.assertEquals(checkoutPage.getItemPriceForQuantity(), checkoutPage.getFinalPrice());
+//        checkoutPage.clickPlaceOrder();
+//        receiptPage.printReceiptError();
 
     }
 }

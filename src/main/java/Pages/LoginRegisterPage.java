@@ -39,7 +39,7 @@ public class LoginRegisterPage {
         enterEmail.sendKeys(email);
         WebElement enterPassword = waitMethods.waitForElementToBeVisible(signInPasswordInput2);
         enterPassword.sendKeys(password);
-        waitMethods.sleep(4);
+        //waitMethods.sleep(4);
         signInButton2.click();
         //enterPassword.sendKeys(Keys.ENTER);
     }

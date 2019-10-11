@@ -15,6 +15,8 @@ public class DealDetailsPage {
     private WebElement dealTitle;
     @FindBy(xpath = "//div[@class='description']")
     private List<WebElement> dates;
+    @FindBy (xpath = "//span[@class='flatpickr-day ']")
+    private List<WebElement> tableDates;
     @FindBy(xpath = "//div[@data-bhw='GliveBookingDealBookerTimes']")
     private WebElement timeSelector;
     @FindBy(xpath = "//div/div/ul/li/div[@class=' ch-bg-prim ch-bdr-prim']")
@@ -27,6 +29,11 @@ public class DealDetailsPage {
     private WebElement buyButton;
     @FindBy(xpath = "//div[@class='info-price']")
     private WebElement dealPrice;
+    @FindBy(xpath = "//div[contains(@class,'collapsed')]")
+    private List<WebElement> collapsedArrow;
+    @FindBy(xpath = "//div[contains(@class,'expanded')]")
+    private List<WebElement> expandedArrow;
+
 
     //asserting stuff
     public String getTextOfDealTitle() { return dealTitle.getText(); }
@@ -37,10 +44,40 @@ public class DealDetailsPage {
     }
     public Integer numberOfTickets;
 
-    public void selectDate(int index) {
-        WaitMethods.sleep(5);
+//    public void clickNavBarCategory(String channelId) {
+//        waitMethods.sleep(2);
+//        waitMethods.isElementDisplayed(navBarCategories.get(0), 5);
+//        for (WebElement channel : navBarCategories) {
+//            if (channel.getAttribute("id").contains(channelId)) {
+//                channel.click();
+//                break;
+//            }
+//        }
+//    }
+
+    public void selectDate1(int index) {
+
         WebElement date = waitMethods.waitForElementToBeVisible(dates.get(index));
         date.click();
+    }
+
+    public void selectDate2(int index) {
+        WebElement date = waitMethods.waitForElementToBeVisible(tableDates.get(index));
+        date.click();
+    }
+
+    public void selectDate(int index) {
+        waitMethods.sleep(5);
+        try {
+            if(waitMethods.isElementDisplayed(dates.get(index), 5)) {
+                selectDate1(index);
+            }
+        } catch (Exception e) {}
+        try {
+            if(waitMethods.isElementDisplayed(tableDates.get(index), 5)) {
+                selectDate2(index);
+            }
+        } catch (Exception e) {}
     }
 
     public void selectTime(int index) {

@@ -18,6 +18,7 @@ public class ReceiptPage {
 
 
     public void printReceiptError() {
+        waitMethods.sleep(20);
         try {
             if (waitMethods.isElementDisplayed(processingFirstLine, 20)) {
                 System.out.println(processingFirstLine.getText());

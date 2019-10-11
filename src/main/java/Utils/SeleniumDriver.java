@@ -33,7 +33,20 @@ public class SeleniumDriver {
 
     public void goToUrl(String host) {
         driver.get(host);
+        driver.manage().window().maximize();
     }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+
+//    public void addCookie() {
+//        Cookie header = new Cookie("Cookie.set('LS-5958_NewDesktopHeader_USCA:LS-5958_NewDesktopHeader_USCA:Variant', 'Treatment')");
+//        driver.manage().addCookie(header,);
+//    }
+
+
 
 
 
