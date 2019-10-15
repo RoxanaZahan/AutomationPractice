@@ -14,6 +14,17 @@ public class Footer {
     @FindBy(xpath = "//a[contains(@id, 'ls-footer')]")
     private List<WebElement> footerLinks;
 
+    public enum FooterHyperlinks {
+        ABOUT ("https://press.groupon.com/"),
+        JOBS ("https://www.grouponcareers.com/en-us/"),
+        BLOG ("https://press.groupon.com/"),
+        PRESS ("https://press.groupon.com/");
+
+        private final String textH;
+        FooterHyperlinks(String text) {this.textH = text;}
+        public String getFooterHyperlinkText() {return this.textH;}
+    }
+
     public void clickFooter(String footerLinkId) {
         waitMethods.sleep(5);
         waitMethods.isElementDisplayed(footerLinks.get(0),5);
@@ -25,9 +36,9 @@ public class Footer {
         }
     }
 
-    public void urlValidation (String footerLinkId) {
+    public String urlValidation (String footerLinkId) {
         clickFooter(footerLinkId);
-        seleniumDriver.driver.getCurrentUrl();
-
+        String actualLink = seleniumDriver.driver.getCurrentUrl();
+        return actualLink;
     }
 }

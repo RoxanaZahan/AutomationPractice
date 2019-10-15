@@ -23,6 +23,7 @@ public class Test4 extends SeleniumDriver {
 
     Integer expectedDealPrice = 10;
     Integer expectedItemPrice = 1000;
+    Footer.FooterHyperlinks aboutLink = Footer.FooterHyperlinks.ABOUT;
 
     @BeforeMethod
     public void beforeTest() {
@@ -42,21 +43,22 @@ public class Test4 extends SeleniumDriver {
         //Local Variable
         goToUrl("https://staging.groupon.com/");
         landingPage.noThanksClick();
-        landingPage.clickSignInButton();
-        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
-        landingPage.freeTextSearch("willcall");
-        landingPage.clickOnDeal(0);
-        Assert.assertEquals(dealDetailsPage.getDealPrice(), expectedDealPrice);
-        dealDetailsPage.selectDate(0);
-        dealDetailsPage.selectTime(0);
-        dealDetailsPage.selectTicketsNumber(2);
-        dealDetailsPage.selectSeatingSection(0);
-        //Assert.assertEquals(dealDetailsPage.getDealPrice(), dealDetailsPage.expectedTotalPriceDD());
-        dealDetailsPage.clickBuyButton();
-        //Assert.assertEquals(checkoutPage.getItemPrice(), expectedItemPrice);
-        //Assert.assertEquals(checkoutPage.getItemPriceForQuantity(), checkoutPage.getFinalPrice());
-        checkoutPage.clickPlaceOrder();
-        receiptPage.printReceiptError();
+        Assert.assertEquals(footer.urlValidation("about"), aboutLink.getFooterHyperlinkText());
+//        landingPage.clickSignInButton();
+//        loginRegisterPage.signIn("clo01@groupon.com", "grouponn");
+//        landingPage.freeTextSearch("willcall");
+//        landingPage.clickOnDeal(0);
+//        Assert.assertEquals(dealDetailsPage.getDealPrice(), expectedDealPrice);
+//        dealDetailsPage.selectDate(0);
+//        dealDetailsPage.selectTime(0);
+//        dealDetailsPage.selectTicketsNumber(2);
+//        dealDetailsPage.selectSeatingSection(0);
+//        //Assert.assertEquals(dealDetailsPage.getDealPrice(), dealDetailsPage.expectedTotalPriceDD());
+//        dealDetailsPage.clickBuyButton();
+//        //Assert.assertEquals(checkoutPage.getItemPrice(), expectedItemPrice);
+//        //Assert.assertEquals(checkoutPage.getItemPriceForQuantity(), checkoutPage.getFinalPrice());
+//        checkoutPage.clickPlaceOrder();
+//        receiptPage.printReceiptError();
 
     }
 }
