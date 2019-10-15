@@ -15,10 +15,16 @@ public class DealDetailsPage {
     private WebElement dealTitle;
     @FindBy(xpath = "//div[@class='description']")
     private List<WebElement> dates;
-    @FindBy (xpath = "//span[@class='flatpickr-day ']")
+    @FindBy(xpath = "//span[@class='flatpickr-day ']")
     private List<WebElement> tableDates;
+    @FindBy(xpath = "//div[@data-bhw='GliveBookingDealBookerDates']")
+    private WebElement dateSelector;
     @FindBy(xpath = "//div[@data-bhw='GliveBookingDealBookerTimes']")
     private WebElement timeSelector;
+    @FindBy(xpath = "//div[@data-bhw='GliveBookingDealBookerQuantities']")
+    private WebElement quantitySelector;
+    @FindBy(xpath = "//div[@data-bhw='GliveBookingDealBookerSections']")
+    private WebElement sectionSelector;
     @FindBy(xpath = "//div/div/ul/li/div[@class=' ch-bg-prim ch-bdr-prim']")
     private List<WebElement> timePills;
     @FindBy(xpath = "//div[contains(@class, 'quantity')]")
@@ -55,13 +61,20 @@ public class DealDetailsPage {
 //        }
 //    }
 
-    public void selectDate1(int index) {
+    public void isColapsedExpanded (WebElement section) {
+        if (section.getAttribute("class").contains("collapsed")) {
+            section.click();
+        }
+    }
 
+    public void selectDate1(int index) {
+        isColapsedExpanded(dateSelector);
         WebElement date = waitMethods.waitForElementToBeVisible(dates.get(index));
         date.click();
     }
 
     public void selectDate2(int index) {
+        isColapsedExpanded(dateSelector);
         WebElement date = waitMethods.waitForElementToBeVisible(tableDates.get(index));
         date.click();
     }
@@ -81,6 +94,7 @@ public class DealDetailsPage {
     }
 
     public void selectTime(int index) {
+        isColapsedExpanded(timeSelector);
         WebElement times = waitMethods.waitForElementToBeVisible(timeSelector);
         times.click();
         WebElement time = waitMethods.waitForElementToBeVisible(timePills.get(index));
@@ -89,6 +103,7 @@ public class DealDetailsPage {
 
     //make sure to refactor this in order to function for not visible pills as well
     public void selectTicketsNumber(int numberOfTickets) {
+        isColapsedExpanded(quantitySelector);
         this.numberOfTickets = numberOfTickets;
         WebElement number = waitMethods.waitForElementToBeVisible(ticketsNumber.get(numberOfTickets - 1));
         number.click();
@@ -99,6 +114,7 @@ public class DealDetailsPage {
     }
 
     public void selectSeatingSection(int index) {
+        isColapsedExpanded(sectionSelector);
         WaitMethods.sleep(3);
         WebElement seatingSection = waitMethods.waitForElementToBeVisible(seatingSections.get(index));
         seatingSection.click();
