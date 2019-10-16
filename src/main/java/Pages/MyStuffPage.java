@@ -15,6 +15,10 @@ public class MyStuffPage {
     private WebElement grouponsFilterSelector;
     @FindBy(xpath = "//select[@id= 'filter']/option[@value]")
     private List<WebElement> grouponsFilters;
+    @FindBy(xpath = "//span[contains(@class,'status')]")
+    private List<WebElement> grouponsSatusesList;
+    @FindBy(xpath = "//a[@data-bhc-path='Web2AppModal|close-modal:icon']")
+    private WebElement closeModal;
 
     public void myGrouponsFilter(String grouponFilter) {
         WebElement selector = waitMethods.waitForElementToBeVisible(grouponsFilterSelector);
@@ -24,5 +28,24 @@ public class MyStuffPage {
                 filter.click();
             }
         }
+    }
+
+//            for (WebElement channel : navBarCategories) {
+//        if (channel.getAttribute("id").contains(channelId)) {
+
+    public String grouponStatus(Integer index) {
+        WebElement groupon = grouponsSatusesList.get(index);
+        String status = groupon.getText();
+        return status;
+    }
+
+    public void closeModal(){
+        waitMethods.waitForElementToBeVisible(closeModal);
+        closeModal.click();
+    }
+
+    public void filterGroupons(String grouponFilter) {
+        closeModal();
+        myGrouponsFilter(grouponFilter);
     }
 }

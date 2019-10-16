@@ -37,7 +37,11 @@ public class LandingPage {
     @FindBy (xpath = "//div[contains(@class,'cui-udc-title')]")
     private List<WebElement> dealsNames;
 
-
+    public void openStagingGrouponAndLogin() {
+        seleniumDriver.goToUrl("https://staging.groupon.com/");
+        noThanksClick();
+        clickSignInButton();
+    }
     public void noThanksClick() {
         waitMethods.waitForElementToBeVisible(noThanks);
         noThanks.click();
@@ -46,8 +50,13 @@ public class LandingPage {
         waitMethods.waitForElement(header);
     }
 
+    public void searchAndChoose() {
+        freeTextSearch("willcall");
+        clickOnDeal(0);
+    }
+
     public void clickSignInButton() {
-        WaitMethods.sleep(3);
+        WaitMethods.sleep(2);
         try{
             if(waitMethods.isElementDisplayed(signInButton1,5)) {
                 signInButton1.click();
@@ -96,14 +105,14 @@ public class LandingPage {
     }
 
     public void freeTextSearch(String textInput) {
-        WaitMethods.sleep(5);
+        WaitMethods.sleep(2);
         WebElement enterText = waitMethods.waitForElementToBeVisible(textSearch);
         enterText.sendKeys(textInput);
         enterText.sendKeys(Keys.ENTER);
     }
 
     public void clickOnDeal(int index) {
-        WaitMethods.sleep(3);
+        WaitMethods.sleep(2);
         WebElement deal = waitMethods.waitForElementToBeVisible(dealsNames.get(index));
         deal.click();
         WaitMethods.sleep(3);

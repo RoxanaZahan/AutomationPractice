@@ -18,24 +18,29 @@ public class ReceiptPage {
 
 
     public void printReceiptError() {
-        waitMethods.sleep(20);
-        try {
+        waitMethods.sleep(35);
+        //try {
             if (waitMethods.isElementDisplayed(processingFirstLine, 20)) {
                 System.out.println(processingFirstLine.getText());
             }
-        } catch (Exception e) {}
+        //} catch (Exception e) {}
 
         //waitMethods.isElementDisplayed(processingFirstLine, 20);
 
         //WebElement firstLine = waitMethods.waitForElementToBeVisible2(By.xpath("//div[@class='processing-text']"));
-        //WebElement secondLine = waitMethods.waitForElementToBeVisible(processingSecondLine);
+        WebElement secondLine = waitMethods.waitForElementToBeVisible(processingSecondLine);
         //System.out.println(firstLine.getText());
-        //System.out.println(secondLine.getText());
+        System.out.println(secondLine.getText());
     }
 
     public void clickMyStuff() {
         WebElement myStuffButton = waitMethods.waitForElementToBeVisible(myStuff);
         myStuffButton.click();
+    }
+
+    public void printReceiptAndGoToMyStuff() {
+        printReceiptError();
+        clickMyStuff();
     }
 
 }

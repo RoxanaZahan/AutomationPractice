@@ -41,25 +41,25 @@ public class DealDetailsPage {
     private List<WebElement> expandedArrow;
 
 
-    //asserting stuff
+    //used for asserting stuff
     public String getTextOfDealTitle() { return dealTitle.getText(); }
-    public Integer getDealPrice() {
+    public Integer getDealPrice() { //this returns deal price as integer
         String sPrice = dealPrice.getText().replaceAll("[^0-9]", "");
         Integer iPrice = Integer.parseInt(sPrice);
         return iPrice;
     }
     public Integer numberOfTickets;
 
-//    public void clickNavBarCategory(String channelId) {
-//        waitMethods.sleep(2);
-//        waitMethods.isElementDisplayed(navBarCategories.get(0), 5);
-//        for (WebElement channel : navBarCategories) {
-//            if (channel.getAttribute("id").contains(channelId)) {
-//                channel.click();
-//                break;
-//            }
-//        }
-//    }
+    public Integer totalPrice () {
+        return this.numberOfTickets * getDealPrice();
+    }
+
+    public void preselectOptions() {
+        selectDate(0);
+        selectTime(0);
+        selectTicketsNumber(2);
+        selectSeatingSection(0);
+    }
 
     public void isColapsedExpanded (WebElement section) {
         if (section.getAttribute("class").contains("collapsed")) {
@@ -80,7 +80,7 @@ public class DealDetailsPage {
     }
 
     public void selectDate(int index) {
-        waitMethods.sleep(5);
+        waitMethods.sleep(2);
         try {
             if(waitMethods.isElementDisplayed(dates.get(index), 5)) {
                 selectDate1(index);
@@ -94,35 +94,33 @@ public class DealDetailsPage {
     }
 
     public void selectTime(int index) {
+        waitMethods.sleep(2);
         isColapsedExpanded(timeSelector);
-        WebElement times = waitMethods.waitForElementToBeVisible(timeSelector);
-        times.click();
+        //WebElement times = waitMethods.waitForElementToBeVisible(timeSelector);
+        //times.click();
         WebElement time = waitMethods.waitForElementToBeVisible(timePills.get(index));
         time.click();
     }
 
     //make sure to refactor this in order to function for not visible pills as well
     public void selectTicketsNumber(int numberOfTickets) {
+        waitMethods.sleep(2);
         isColapsedExpanded(quantitySelector);
         this.numberOfTickets = numberOfTickets;
         WebElement number = waitMethods.waitForElementToBeVisible(ticketsNumber.get(numberOfTickets - 1));
         number.click();
     }
 
-    public Integer expectedTotalPriceDD () {
-        return this.numberOfTickets * 10;
-    }
-
     public void selectSeatingSection(int index) {
         isColapsedExpanded(sectionSelector);
-        WaitMethods.sleep(3);
+        WaitMethods.sleep(2);
         WebElement seatingSection = waitMethods.waitForElementToBeVisible(seatingSections.get(index));
         seatingSection.click();
     }
 
     //check what happens if buy button is grey (not active)
     public void clickBuyButton() {
-        WaitMethods.sleep(3);
+        WaitMethods.sleep(2);
         buyButton.click();
         WaitMethods.sleep(3);
     }

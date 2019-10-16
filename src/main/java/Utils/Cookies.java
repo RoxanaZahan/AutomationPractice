@@ -51,7 +51,7 @@ public class Cookies {
                             booleanValue();
                     Cookie ck = new Cookie(name,value,domain,path,expiry,isSecure);
                     System.out.println(ck);
-                    seleniumDriver.driver.manage().addCookie(ck); // This will add the stored cookie to your current session
+                    seleniumDriver.driver.manage().addCookie(ck); // This will add the stored cookie to the current session
                 }
             }
         }catch(Exception e){

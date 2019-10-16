@@ -9,6 +9,7 @@ public class LoginRegisterPage {
 
     SeleniumDriver seleniumDriver = new SeleniumDriver();
     WaitMethods waitMethods = new WaitMethods();
+    LandingPage landingPage = new LandingPage();
 
     @FindBy(xpath = "//input[@id='login-email-input']")
     private WebElement signInEmailInput1;
@@ -45,7 +46,7 @@ public class LoginRegisterPage {
     }
 
     public void signIn(String email, String password) {
-        WaitMethods.sleep(3);
+        WaitMethods.sleep(4);
         try{
             if(waitMethods.isElementDisplayed(signInEmailInput1,5)) {
                 signInEmailPasswordInput1(email, password);
@@ -56,5 +57,10 @@ public class LoginRegisterPage {
                 signInEmailPasswordInput2(email, password);
             }
         } catch (Exception e) {}
+    }
+
+    public void signInDefinedCredentials() {
+        landingPage.clickSignInButton();
+        signIn("clo01@groupon.com", "grouponn");
     }
 }

@@ -27,7 +27,7 @@ public class SeleniumDriver {
 
     @AfterMethod
     public static void afterMethod(){
-        WaitMethods.sleep(5);
+        WaitMethods.sleep(2);
         driver.quit();
     }
 
