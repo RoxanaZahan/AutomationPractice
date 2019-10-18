@@ -16,24 +16,25 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class WaitMethods {
     SeleniumDriver seleniumDriver = new SeleniumDriver();
 
-    public static void sleep(int sleepSeconds) {
+    public static void sleep(final int sleepSeconds) {
         try {
             Thread.sleep(sleepSeconds * 1000);
-        } catch (InterruptedException e) {
+        }
+        catch (final InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public WebElement waitForElementToBeVisible(WebElement element) {
-        Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
+    public WebElement waitForElementToBeVisible(final WebElement element) {
+        final Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
                 .withTimeout(Duration.ofSeconds(20))
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NoSuchElementException.class);
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public WebElement waitForElementToBeVisible2(By by) {
-        Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
+    public WebElement waitForElementToBeVisible2(final By by) {
+        final Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
                 .withTimeout(Duration.ofSeconds(20))
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NoSuchElementException.class);
@@ -46,35 +47,37 @@ public class WaitMethods {
             try {
                 return element.isDisplayed();
             }
-            catch (final NoSuchElementException ignored) {
+            catch (final Exception ignored) {
                 WaitMethods.sleep(1);
             }
         }
         return false;
     }
 
-    public WebElement waitForElement(WebElement WebElement) {
-        WebDriverWait wait = new WebDriverWait(seleniumDriver.driver, 10);
+    public WebElement waitForElement(final WebElement WebElement) {
+        final WebDriverWait wait = new WebDriverWait(this.seleniumDriver.driver, 10);
         return wait.until(ExpectedConditions.visibilityOf(WebElement));
     }
 
 
-    public boolean isElementVisible(WebElement webElement){
+    public boolean isElementVisible(final WebElement webElement) {
         WebElement element = null;
-        WebDriverWait wait = new WebDriverWait(seleniumDriver.driver, 2);
-        try{
+        final WebDriverWait wait = new WebDriverWait(this.seleniumDriver.driver, 2);
+        try {
             element = wait.until(ExpectedConditions.visibilityOf(webElement));
-        } catch (Exception e){ }
-        try{
-            if(element.isDisplayed()){
+        }
+        catch (final Exception e) { }
+        try {
+            if (element.isDisplayed()) {
                 return true;
             }
-        }catch (Exception e){}
+        }
+        catch (final Exception e) {}
         return false;
     }
 
-    public void waitForElement(By by){
-        WebDriverWait wait = new WebDriverWait(seleniumDriver.driver, 10);
+    public void waitForElement(final By by) {
+        final WebDriverWait wait = new WebDriverWait(this.seleniumDriver.driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 }
