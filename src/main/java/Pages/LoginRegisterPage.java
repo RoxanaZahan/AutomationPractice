@@ -1,15 +1,16 @@
 package Pages;
 
-import Utils.SeleniumDriver;
-import Utils.WaitMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import Utils.SeleniumDriver;
+import Utils.WaitMethods;
 
 public class LoginRegisterPage {
 
     SeleniumDriver seleniumDriver = new SeleniumDriver();
-    WaitMethods waitMethods = new WaitMethods();
-    LandingPage landingPage = new LandingPage();
+    WaitMethods    waitMethods    = new WaitMethods();
+    LandingPage    landingPage    = new LandingPage();
 
     @FindBy(xpath = "//input[@id='login-email-input']")
     private WebElement signInEmailInput1;
@@ -17,50 +18,52 @@ public class LoginRegisterPage {
     private WebElement signInPasswordInput1;
     @FindBy(xpath = "//button[@id='signin-button']")
     private WebElement signInButton1;
-    @FindBy (xpath = "//input[@id='sf-email']")
+    @FindBy(xpath = "//input[@id='sf-email']")
     private WebElement signInEmailInput2;
-    @FindBy (xpath = "//input[@id='sf-pw']")
+    @FindBy(xpath = "//input[@id='sf-pw']")
     private WebElement signInPasswordInput2;
-    @FindBy (xpath = "//button[@class = 'btn btn-signin']")
+    @FindBy(xpath = "//button[@class = 'btn btn-signin']")
     private WebElement signInButton2;
 
 
-    public void signInEmailPasswordInput1 (String email, String password) {
-        WebElement enterEmail = waitMethods.waitForElementToBeVisible(signInEmailInput1);
+    public void signInEmailPasswordInput1(final String email, final String password) {
+        final WebElement enterEmail = this.waitMethods.waitForElementToBeVisible(this.signInEmailInput1);
         enterEmail.sendKeys(email);
-        WebElement enterPassword = waitMethods.waitForElementToBeVisible(signInPasswordInput1);
+        final WebElement enterPassword = this.waitMethods.waitForElementToBeVisible(this.signInPasswordInput1);
         enterPassword.sendKeys(password);
         //waitMethods.sleep(4);
-        signInButton2.click();
+        this.signInButton2.click();
         //enterPassword.sendKeys(Keys.ENTER);
     }
 
-    public void signInEmailPasswordInput2 (String email, String password) {
-        WebElement enterEmail = waitMethods.waitForElementToBeVisible(signInEmailInput2);
+    public void signInEmailPasswordInput2(final String email, final String password) {
+        final WebElement enterEmail = this.waitMethods.waitForElementToBeVisible(this.signInEmailInput2);
         enterEmail.sendKeys(email);
-        WebElement enterPassword = waitMethods.waitForElementToBeVisible(signInPasswordInput2);
+        final WebElement enterPassword = this.waitMethods.waitForElementToBeVisible(this.signInPasswordInput2);
         enterPassword.sendKeys(password);
         //waitMethods.sleep(4);
-        signInButton2.click();
+        this.signInButton2.click();
         //enterPassword.sendKeys(Keys.ENTER);
     }
 
-    public void signIn(String email, String password) {
-        WaitMethods.sleep(4);
-        try{
-            if(waitMethods.isElementDisplayed(signInEmailInput1,5)) {
+    //TODO : Refactor this, once you add the cookie you no longer ned to do this.
+    public void signIn(final String email, final String password) {
+        try {
+            if (this.waitMethods.isElementDisplayed(this.signInEmailInput1, 5)) {
                 signInEmailPasswordInput1(email, password);
             }
-        } catch (Exception e) {}
-        try{
-            if(waitMethods.isElementDisplayed(signInEmailInput2,5)) {
+        }
+        catch (final Exception e) {}
+        try {
+            if (this.waitMethods.isElementDisplayed(this.signInEmailInput2, 5)) {
                 signInEmailPasswordInput2(email, password);
             }
-        } catch (Exception e) {}
+        }
+        catch (final Exception e) {}
     }
 
     public void signInDefinedCredentials() {
-        landingPage.clickSignInButton();
+        this.landingPage.clickSignInButton();
         signIn("clo01@groupon.com", "grouponn");
     }
 }
