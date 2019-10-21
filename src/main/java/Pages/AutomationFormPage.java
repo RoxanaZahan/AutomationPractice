@@ -4,7 +4,7 @@ import Utils.WaitMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AutomationForm {
+public class AutomationFormPage {
 
     WaitMethods waitMethods = new WaitMethods();
 
@@ -16,7 +16,7 @@ public class AutomationForm {
         firstNameTab.sendKeys(firstName);
     }
      public String validateFirstName() {
-        final String enteredFirstName = this.waitMethods.waitForElementToBeVisible(this.firstName).getText();
-        return enteredFirstName;
+        final WebElement enteredFirstName = this.waitMethods.waitForElementToBeVisible(this.firstName);
+        return enteredFirstName.getAttribute("value");
      }
 }
