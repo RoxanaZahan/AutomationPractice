@@ -17,6 +17,10 @@ public class AutomationFormPage {
         final WebElement firstNameTab = this.waitMethods.waitForElementToBeVisible(this.firstName);
         firstNameTab.sendKeys(firstName);
     }
+     public String validateFirstName() {
+        final WebElement enteredFirstName = this.waitMethods.waitForElementToBeVisible(this.firstName);
+        return enteredFirstName.getAttribute("value");
+     }
     public String validateFirstName() {
         final WebElement enteredFirstName = this.waitMethods.waitForElementToBeVisible(this.firstName);
         return enteredFirstName.getAttribute("value");
