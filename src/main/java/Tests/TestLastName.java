@@ -22,6 +22,6 @@ public class TestLastName extends SeleniumDriver {
     public void addLastNameAndValidate() {
         goToUrl("https://www.toolsqa.com/automation-practice-form/");
         automationFormPage.enterLastName(this.lastName);
-        Assert.assertEquals(automationFormPage.validateLastName(), this.lastName);
+        Assert.assertEquals(automationFormPage.getLastName(), this.lastName);
     }
 }
