@@ -1,17 +1,14 @@
-package Tests;
+package AutomationPracticeWithToolsQASite.Pages.Tests;
 
-import Pages.AutomationFormPage;
+import AutomationPracticeWithToolsQASite.Pages.AutomationFormPage;
 import Utils.SeleniumDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestFirstName extends SeleniumDriver {
-
+public class TestSimpleButton extends SeleniumDriver {
     //Instance Variables
     AutomationFormPage automationFormPage;
-    String firstName = "Potato"; //modify here with the First Name expected to be tested
 
     @BeforeMethod
     public void beforeTest() {
@@ -19,9 +16,9 @@ public class TestFirstName extends SeleniumDriver {
     }
 
     @Test
-    public void addFirstNameAndValidate() {
+    public void addLastNameAndValidate() {
         goToUrl("https://www.toolsqa.com/automation-practice-form/");
-        automationFormPage.enterFirstName(this.firstName);
-        Assert.assertEquals(automationFormPage.getFirstName(), this.firstName);
+        automationFormPage.clickSimpleButton();
+        //I still have to continue this - add an assert or something. See the notebook for details.
     }
 }
