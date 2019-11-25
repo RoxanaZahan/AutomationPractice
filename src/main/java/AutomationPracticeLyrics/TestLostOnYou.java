@@ -16,8 +16,8 @@ public class TestLostOnYou extends SeleniumDriver {
     }
 
     // BEFORE RUNNING THIS, MAKE SURE TO PUT YOU HEADPHONES ON AND LISTEN TO THE SONG!!!!
-    // I made sure to put the Youtube link here to make it easier for you. So just hit RUN.
-    // I intentionally commented the driver.quit command so I will let you the opportunity to listen the entire song if you want.
+    // I made sure to put the Youtube link here to make it easier for you. So just hit RUN. (...and play if it does not start by itself.
+    // I intentionally commented the driver.quit command to provide you the opportunity to listen to the entire song if you want.
 
     @Test
     public void isThatLostOnYou() {

@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+//        Create a class called Person
+//        Create a List of objects of type Person
+//        Create 2 child classes of the Person class, called Student and Teacher
+//        Create an enum called PersonType, containing values STUDENT and TEACHER
+//        Create a HashMap with key of type PersonType and values of type Person
+//        Override the toString() method on each object type.
+//        Iterate through each list and map and print all objects
+
 public class Main {
 
     public static void main(String[] args) {
