@@ -22,9 +22,23 @@ package BuildingPackage;
 public class Main {
 
     public static void main(String[] args) {
-        Building building = new Building("Office", 3);
+       // Building building = new Building("Building", 3);
+        //building.printBuilding();
+        Floors floor1 = new Floors("Floor1");
+        floor1.addRooms(2, Rooms.roomType.CONFERENCE);
+        floor1.addRooms(3, Rooms.roomType.CONFERENCE);
+        floor1.addRooms(3, Rooms.roomType.OFFICE);
+        floor1.addRooms(1, Rooms.roomType.KITCHEN);
+        floor1.addRooms(1, Rooms.roomType.TOILET);
+        floor1.addFurnitureOrAppliances(Rooms.roomType.CONFERENCE,"Conference room 1", Rooms.furnitureAndAppliancesType.SEAT,6);
+        floor1.addFurnitureOrAppliances(Rooms.roomType.KITCHEN,"Kitchen 1", Rooms.furnitureAndAppliancesType.FRIDGE, 1);
+        floor1.addRooms(1, Rooms.roomType.TOILET);
 
-        building.printBuilding();
+        floor1.addRooms(3, Rooms.roomType.OFFICE);
+        floor1.addFurnitureOrAppliances(Rooms.roomType.OFFICE, "Office room 2", Rooms.furnitureAndAppliancesType.DESK, 1);
+
+        floor1.printFloor();
+
 
 
 

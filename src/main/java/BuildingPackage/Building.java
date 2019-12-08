@@ -8,7 +8,7 @@ public class Building {
     int numberOfFloors;
     int floorIndex;
     String floorName = "Floor" + floorIndex;
-
+    Floors floors = new Floors(floorName);
 
     public Building(String buildingName, int numberOfFloors) {
         this.buildingName = buildingName;
@@ -18,8 +18,9 @@ public class Building {
 
     public void addFloors(int numberOfFloors) {
         for (int i = 0; i < numberOfFloors; i++) {
-            floorsList.add(floorIndex, new Floors(this.buildingName, this.numberOfFloors, this.floorName));
-            floorIndex++;
+            this.floorsList.add(this.floorIndex, new Floors(this.floorName));
+            this.floorIndex++;
+            System.out.println(this.floorName);
         }
         this.numberOfFloors =+ numberOfFloors;
     }
@@ -31,6 +32,9 @@ public class Building {
 
     public void printBuilding() {
         System.out.println(buildingName + " building has the following structure:");
+        for(int i = 0; i < floorsList.size(); i++) {
+            floorsList.get(i).printFloor();
+        }
     }
 
 }
