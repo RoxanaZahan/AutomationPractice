@@ -3,34 +3,42 @@ package BuildingPackage;
 import java.util.ArrayList;
 
 public class Building {
-    String buildingName;
-    ArrayList<Floors> floorsList;
-    int numberOfFloors;
-    int floorIndex;
-    String floorName = "Floor" + floorIndex;
+
+    private ArrayList<Floor> floorsList = new ArrayList<Floor>();
+    private Floor floor;
 
 
-    public Building(String buildingName, int numberOfFloors) {
-        this.buildingName = buildingName;
-        this.floorsList = new ArrayList<Floors>();
-        addFloors(numberOfFloors);
+
+    public void addFloor(String floorName) {
+        Floor floor = new Floor(floorName);
+        this.floorsList.add(floor);
     }
 
-    public void addFloors(int numberOfFloors) {
-        for (int i = 0; i < numberOfFloors; i++) {
-            floorsList.add(floorIndex, new Floors(this.buildingName, this.numberOfFloors, this.floorName));
-            floorIndex++;
+    public void addFloor(int numberOfFloors) {
+        int startingIndex = floorsList.size();
+        for (int i = 0; i<numberOfFloors; i++) {
+            Floor floor = new Floor("Floor" + startingIndex);
+            this.floorsList.add(startingIndex, floor);
+            startingIndex++;
         }
-        this.numberOfFloors =+ numberOfFloors;
     }
 
-    public String getFloors() {
-        return floorsList.toString();
+    public Floor getFloor(int index) {
+        return floorsList.get(index);
+    }
+
+    public void printFloors() {
+        for (Floor fl : this.floorsList) {
+            this.floor = fl;
+            System.out.print("  - ");
+            this.floor.printFloor();
+        }
     }
 
 
     public void printBuilding() {
-        System.out.println(buildingName + " building has the following structure:");
+        System.out.println("My building has the following structure:");
+        printFloors();
     }
 
 }

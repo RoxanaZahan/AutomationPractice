@@ -22,9 +22,17 @@ package BuildingPackage;
 public class Main {
 
     public static void main(String[] args) {
-        Building building = new Building("Office", 3);
+        Building building = new Building();
 
+
+        building.addFloor("Floor0");
+        building.addFloor("Floor1");
+        building.addFloor(3);
         building.printBuilding();
+        building.getFloor(0).addRoom("Room1");
+        Room.Days day = Room.Days.MONDAY;
+
+
 
 
 
