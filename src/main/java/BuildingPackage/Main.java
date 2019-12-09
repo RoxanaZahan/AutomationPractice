@@ -24,6 +24,7 @@ public class Main {
     public static void main(String[] args) {
         Building building = new Building("My Office", 3);
 
+        building.addFloors(1);
         building.addRooms("Floor0", 2, Rooms.roomType.CONFERENCE);
         building.addRooms("Floor0", 2, Rooms.roomType.OFFICE);
         building.addRooms("Floor0", 1, Rooms.roomType.KITCHEN);
