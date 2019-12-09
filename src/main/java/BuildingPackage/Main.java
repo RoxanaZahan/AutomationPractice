@@ -22,16 +22,17 @@ package BuildingPackage;
 public class Main {
 
     public static void main(String[] args) {
-        Building building = new Building();
+        Building building = new Building("My Office", 3);
 
+        building.addRooms("Floor0", 2, Rooms.roomType.CONFERENCE);
+        building.addRooms("Floor0", 2, Rooms.roomType.OFFICE);
+        building.addRooms("Floor0", 1, Rooms.roomType.KITCHEN);
+        building.addRooms("Floor0", 1, Rooms.roomType.TOILET);
+        building.addFurnitureOrAppliances("Floor0", Rooms.roomType.CONFERENCE,"Conference room 1", Rooms.furnitureAndAppliancesType.SEAT,6);
+        building.addFurnitureOrAppliances("Floor0", Rooms.roomType.KITCHEN,"Kitchen 1", Rooms.furnitureAndAppliancesType.FRIDGE, 1);
+        building.addFurnitureOrAppliances("Floor0", Rooms.roomType.OFFICE, "Office room 2", Rooms.furnitureAndAppliancesType.DESK, 1);
 
-        building.addFloor("Floor0");
-        building.addFloor("Floor1");
-        building.addFloor(3);
         building.printBuilding();
-        building.getFloor(0).addRoom("Room1");
-        Room.Days day = Room.Days.MONDAY;
-
 
 
 
