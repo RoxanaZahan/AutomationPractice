@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 
 public class TestLastName extends SeleniumDriver {
 
+    //still have to do some changes here - currently the test fails
+
     //Instance Variables
     AutomationFormPage automationFormPage;
     String lastName = "Rotten"; //modify here with the Last Name expected to be tested
