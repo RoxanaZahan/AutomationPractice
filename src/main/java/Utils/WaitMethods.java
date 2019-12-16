@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;
@@ -23,6 +24,20 @@ public class WaitMethods {
             e.printStackTrace();
         }
     }
+
+    public WebElement waitForElementToBeClickable(final WebElement element) {
+        final Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
+                .withTimeout(Duration.ofSeconds(20))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void waitForElementToBeClickableByPath() {
+        final WebElement ha = seleniumDriver.driver.findElement(By.xpath("//button[@id='buttonwithclass']"));
+        ha.click();
+    }
+
 
     public WebElement waitForElementToBeVisible(final WebElement element) {
         final Wait<WebDriver> wait = new FluentWait<>(SeleniumDriver.driver)
